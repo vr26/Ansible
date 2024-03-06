@@ -1,6 +1,6 @@
 ---
 - name: Portal playbook
-  hosts: windows
+  hosts: localhost
   gather_facts: no
   tasks:
     - name: Display variables
