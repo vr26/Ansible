@@ -1,11 +1,6 @@
 ---
-- name: Core playbook
-  hosts: localhost
-  connection: local
-  gather_facts: no
-  tasks:
-    - name: Display variables
-      win_shell: |
-        Write-Output "DestinationEngineeringDBBackupLocation: {{ destination_engineering_db_backup_location }}"
-        Write-Output "BypassDestinationDBBackup: {{ bypass_destination_db_backup }}"
-        Write-Output "UseUsersAndRolesFromSource: {{ use_users_and_roles_from_source }}"
+- name: Display variables
+  shell: |
+    echo "DestinationEngineeringDBBackupLocation: {{ destination_engineering_db_backup_location }}"
+    echo "BypassDestinationDBBackup: {{ bypass_destination_db_backup }}"
+    echo "UseUsersAndRolesFromSource: {{ use_users_and_roles_from_source }}"
