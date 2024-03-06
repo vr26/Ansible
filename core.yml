@@ -1,9 +1,4 @@
 ---
-- name: Core playbook
-  hosts: localhost
-  connection: local
-  gather_facts: yes
-  tasks:
-    - name: Display variables
-      debug:
-        var: destination_engineering_db_backup_location_fact
+- name: Use variable from vars.yml
+  debug:
+    msg: "{{ my_variable }}"
