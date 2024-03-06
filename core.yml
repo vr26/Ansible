@@ -1,8 +1,8 @@
 ---
-- name: Display variables
-  shell: |
-    echo "Hello world!"
-  register: shell_output
-    
-- debug:
-    var: shell_output.stdout
+- name: Core playbook
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Display variables
+      win_shell: Write-Output "DestinationEngineeringDBBackupLocation: {{ destination_engineering_db_backup_location }}"
