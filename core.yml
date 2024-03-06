@@ -2,7 +2,7 @@
 - name: Display variables
   shell: |
     echo "Hello world!"
-    register: shell_output
+  register: shell_output
     
 - debug:
     var: shell_output.stdout
