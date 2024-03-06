@@ -5,4 +5,5 @@
   gather_facts: no
   tasks:
     - name: Display variables
-      win_shell: Write-Output {{ destination_engineering_db_backup_location }}
+      debug:
+        var: destination_engineering_db_backup_location_fact
