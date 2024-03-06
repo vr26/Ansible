@@ -1,6 +1,7 @@
 ---
 - name: Main playbook
-  hosts: windows
+  hosts: localhost
+  connection: local
   gather_facts: no
   vars:
     destination_engineering_db_backup_location: 'path_to_backup_location'
