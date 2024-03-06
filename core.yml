@@ -5,4 +5,4 @@
   gather_facts: no
   tasks:
     - name: Display variables
-      win_shell: Write-Output "DestinationEngineeringDBBackupLocation: '{{ destination_engineering_db_backup_location }}'"
+      win_shell: Write-Output {{ destination_engineering_db_backup_location }}
