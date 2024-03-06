@@ -8,3 +8,7 @@
   tasks:
     - name: Include Core playbook
       shell: echo "{{ destination_engineering_db_backup_location }}"
+      register: shell_output
+    
+    - debug:
+        var: shell_output.stdout
