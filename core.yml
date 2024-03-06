@@ -1,6 +1,6 @@
 ---
 - name: Core playbook
-  hosts: windows
+  hosts: localhosts
   gather_facts: no
   tasks:
     - name: Display variables
