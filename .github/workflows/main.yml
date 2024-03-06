@@ -1,4 +1,7 @@
 name: Run Ansible Playbook
+hosts: localhost
+connection: local
+gather_facts: no
 
 on:
   workflow_dispatch:
