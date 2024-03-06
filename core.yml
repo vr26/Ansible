@@ -1,6 +1,4 @@
 ---
 - name: Display variables
   shell: |
-    echo "DestinationEngineeringDBBackupLocation: {{ destination_engineering_db_backup_location }}"
-    echo "BypassDestinationDBBackup: {{ bypass_destination_db_backup }}"
-    echo "UseUsersAndRolesFromSource: {{ use_users_and_roles_from_source }}"
+    echo "Hello world!"
