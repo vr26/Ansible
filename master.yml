@@ -5,18 +5,8 @@
   gather_facts: no
   vars:
     destination_engineering_db_backup_location: 'path_to_backup_location'
-    bypass_destination_db_backup: false
-    use_users_and_roles_from_source: false
   tasks:
     - name: Include Core playbook
       include_tasks: core.yml
       vars:
         destination_engineering_db_backup_location: "{{ destination_engineering_db_backup_location }}"
-        bypass_destination_db_backup: "{{ bypass_destination_db_backup }}"
-        use_users_and_roles_from_source: "{{ use_users_and_roles_from_source }}"
-    - name: Include Portal playbook
-      include_tasks: portal.yml
-      vars:
-        destination_engineering_db_backup_location: "{{ destination_engineering_db_backup_location }}"
-        bypass_destination_db_backup: "{{ bypass_destination_db_backup }}"
-        use_users_and_roles_from_source: "{{ use_users_and_roles_from_source }}"
