@@ -8,6 +8,5 @@
       include_vars:
         file: vars.yml
 
-    - name: Use variable from vars.yml
-      debug:
-        msg: "{{ my_variable }}"
+    - name: Include core playbook
+      include_tasks: core.yml
