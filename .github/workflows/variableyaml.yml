@@ -1,0 +1,23 @@
+name: Run Ansible Playbook
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository content
+      uses: actions/checkout@v2 # This will checkout your repository content to GitHub Actions runner.
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Ansible
+      run: pip install ansible
+
+    - name: Run Ansible playbook
+      run: ansible-playbook variable.yml
