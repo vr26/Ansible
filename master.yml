@@ -15,10 +15,3 @@
         destination_engineering_db_backup_location: "{{ destination_engineering_db_backup_location }}"
         bypass_destination_db_backup: "{{ bypass_destination_db_backup }}"
         use_users_and_roles_from_source: "{{ use_users_and_roles_from_source }}"
-
-    - name: Include Portal playbook
-      include_tasks: portal.yml
-      vars:
-        destination_engineering_db_backup_location: "{{ destination_engineering_db_backup_location }}"
-        bypass_destination_db_backup: "{{ bypass_destination_db_backup }}"
-        use_users_and_roles_from_source: "{{ use_users_and_roles_from_source }}"
