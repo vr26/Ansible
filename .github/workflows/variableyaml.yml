@@ -6,7 +6,7 @@ on:
       my_input:
         description: 'Input for Ansible playbook'     
         required: true
-        default: 'Default value'
+        default: '0'
 
 jobs:
   build:
@@ -24,7 +24,12 @@ jobs:
     - name: Install Ansible
       run: pip install ansible
 
-    - name: Run Ansible playbook
+    - name: Run Ansible playbook without extra vars
+      if: github.event.inputs.my_input == '0'
+      run: ansible-playbook variable.yml
+
+    - name: Run Ansible playbook with extra vars
+      if: github.event.inputs.my_input != '0'
       env:
         MY_INPUT: ${{ github.event.inputs.my_input }}
       run: ansible-playbook variable.yml -e "my_variable=${MY_INPUT}"
