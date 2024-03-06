@@ -1,4 +1,4 @@
-name: BHAR REFRESH - ${{ github.event.inputs.my_input }}
+name: BHAR REFRESH
 
 on:
   workflow_dispatch:
