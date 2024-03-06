@@ -1,10 +1,40 @@
-run-name: BHAR REFRESH - ${{ github.event.inputs.my_input }}
+run-name: ${{ github.event.inputs.Client }} ${{ github.event.inputs.Environment }} REFRESH | ${{ github.event.inputs.type }}
 
 on:
   workflow_dispatch:
-    inputs:       
+    inputs: 
+      Client:
+        type: choice
+        required: true
+        default: 'ALL'
+        description: Make a choice
+        options:
+         - BHAR
+         - BHME
+         - CMIL
+         - LWWA
+      Environment:
+        type: choice
+        required: true
+        default: 'ALL'
+        description: Make a choice
+        options:
+         - ALL
+         - PS
+         - UAT
+         - SBX
+      type:
+        type: choice
+        required: true
+        description: Please choose the refresh type
+        default: All
+        options:
+          - Core
+          - Portal
+          - All
+    
       my_input:
-        description: 'Input for Ansible playbook'     
+        description: 'Backup Location'     
         required: true
         default: 'Nil'
 
