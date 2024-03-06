@@ -1,0 +1,13 @@
+---
+- name: Run Ansible Playbook
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Include variables from vars.yml
+      include_vars:
+        file: vars.yml
+
+    - name: Use variable from vars.yml
+      debug:
+        msg: "{{ my_variable }}"
