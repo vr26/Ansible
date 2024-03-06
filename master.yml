@@ -8,5 +8,3 @@
   tasks:
     - name: Include Core playbook
       include_tasks: core.yml
-      vars:
-        destination_engineering_db_backup_location: {{ destination_engineering_db_backup_location }}
