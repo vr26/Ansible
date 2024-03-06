@@ -1,7 +1,17 @@
-name: Variable Playbook
-
+run-name: BHAR REFRESH - ${{ github.event.inputs.job }}
 on:
   workflow_dispatch:
+    inputs:
+      job:
+        type: choice
+        required: true
+        default: 'ALL'
+        description: Make a choice
+        options:
+          - ALL
+          - PS
+          - UAT
+          - SBX
 
 jobs:
   build:
