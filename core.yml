@@ -2,7 +2,7 @@
 - name: Core playbook
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: Display variables
       debug:
