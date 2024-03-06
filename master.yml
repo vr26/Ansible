@@ -3,15 +3,11 @@
   hosts: localhost
   connection: local
   gather_facts: no
-  vars:
-    destination_engineering_db_backup_location: 'C:\temp\engineering_db_backup.bak'
-    bypass_destination_db_backup: false
-    use_users_and_roles_from_source: false
   tasks:
-
-    - name: Include Core playbook
-      include_tasks: core.yml
-      vars:
-        destination_engineering_db_backup_location: "{{ destination_engineering_db_backup_location }}"
-        bypass_destination_db_backup: "{{ bypass_destination_db_backup }}"
-        use_users_and_roles_from_source: "{{ use_users_and_roles_from_source }}"
+    - name: Display variables
+      shell: |
+        echo "Hello world!"
+      register: shell_output
+    
+    - debug:
+        var: shell_output.stdout
