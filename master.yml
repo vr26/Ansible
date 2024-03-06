@@ -7,4 +7,4 @@
     destination_engineering_db_backup_location: 'path_to_backup_location'
   tasks:
     - name: Include Core playbook
-      include_tasks: core.yml
+      shell: echo "{{ destination_engineering_db_backup_location }}"
