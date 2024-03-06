@@ -3,10 +3,11 @@
   hosts: localhost
   connection: local
   gather_facts: no
+  vars:
+    variable1: 'Hello World!'
   tasks:
     - name: Display variables
-      shell: |
-        echo "Hello world!"
+      shell: echo "{{ variable1 }}"
       register: shell_output
     
     - debug:
