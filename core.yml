@@ -1,8 +1,17 @@
 ---
-- name: Assign local value to my_variable
-  set_fact:
-    my_variable: "############# !! Local Value !! ########"
+#- name: Assign local value to my_variable
+ # set_fact:
+  #  my_variable: "############# !! Local Value !! ########"
     
 - name: Use variable from vars.yml
   debug:
     msg: "{{ my_variable }}"
+    
+- name: Use variable from vars.yml
+  debug:
+    msg: "{{ my_variable }}"
+    
+- name: Use variable from vars.yml
+  debug:
+    msg: "{{ my_variable }}"
+
