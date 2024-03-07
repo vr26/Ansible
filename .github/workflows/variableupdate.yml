@@ -33,13 +33,13 @@ jobs:
       run: |
         cp vars.yml vars_temp.yml
         if [[ -n "${{ github.event.inputs.input1 }}" ]]; then
-          echo "variable1: '${{ github.event.inputs.input1 }}'" >> vars_temp.yml
+          echo "variable1: '${{ github.event.inputs.input1 }}'" >> vars_temp_${RUN_NUMBER}.yml
         fi
         if [[ -n "${{ github.event.inputs.input2 }}" ]]; then
-          echo "variable2: '${{ github.event.inputs.input2 }}'" >> vars_temp.yml
+          echo "variable2: '${{ github.event.inputs.input2 }}'" >> vars_temp_${RUN_NUMBER}.yml
         fi
         if [[ -n "${{ github.event.inputs.input3 }}" ]]; then
-          echo "variable3: '${{ github.event.inputs.input3 }}'" >> vars_temp.yml
+          echo "variable3: '${{ github.event.inputs.input3 }}'" >> vars_temp_${RUN_NUMBER}.yml
         fi
         
     - name: Print vars_temp.yml
@@ -49,4 +49,4 @@ jobs:
         sleep 30
           
     - name: Run Ansible playbook
-      run: ansible-playbook core.yml -e "@vars_temp.yml"
+      run: ansible-playbook core.yml -e "@vars_temp_${RUN_NUMBER}.yml"
