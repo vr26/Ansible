@@ -90,16 +90,12 @@ jobs:
         if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
           echo "Bypass_Backup: '${{ github.event.inputs.Bypass_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
-    - name: Print 
-      run: |
-        cat vars_temp_${{ github.run_id }}.yml
-        echo "Pausing for 30 seconds. Please check the variables and cancel the workflow if needed."
-        sleep 30
         
     - name: Print vars_temp.yml
       run: |
-        python3 -c "
+        python3 <<EOF
         import yaml
+        import time
 
         # Load the vars_temp file
         with open('vars_temp_${{ github.run_id }}.yml', 'r') as f:
@@ -110,8 +106,8 @@ jobs:
             print(f'{key}: {value}')
 
         print('Pausing for 30 seconds. Please check the variables and cancel the workflow if needed.')
-        "
-        sleep 30
+        time.sleep(30)
+        EOF
           
     - name: Run Ansible playbook
       run: ansible-playbook core.yml -e "@vars_temp_${{ github.run_id }}.yml"
