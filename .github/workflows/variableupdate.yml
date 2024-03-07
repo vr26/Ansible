@@ -78,13 +78,13 @@ jobs:
         if [[ -n "${{ github.event.inputs.type }}" ]]; then
           echo "type: '${{ github.event.inputs.type }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
-        if [[ -n "${{ github.event.inputs.Source_Backup }}" ]]; then
+        if [[ -n "${{ github.event.inputs.Source_Backup_AppDB }}" ]]; then
           echo "Source_Backup_AppDB: '${{ github.event.inputs.Source_Backup_AppDB }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
-        if [[ -n "${{ github.event.inputs.Destination_Backup }}" ]]; then
+        if [[ -n "${{ github.event.inputs.Destination_Backup_AppDB }}" ]]; then
           echo "Destination_Backup_AppDB: '${{ github.event.inputs.Destination_Backup_AppDB }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
-        if [[ -n "${{ github.event.inputs.Source_Backup }}" ]]; then
+        if [[ -n "${{ github.event.inputs.Source_Backup_EngDB }}" ]]; then
           echo "Source_Backup_EngDB: '${{ github.event.inputs.Source_Backup_EngDB }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
         if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
