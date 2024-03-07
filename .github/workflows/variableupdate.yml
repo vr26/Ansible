@@ -90,6 +90,11 @@ jobs:
         if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
           echo "Bypass_Backup: '${{ github.event.inputs.Bypass_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
+    - name: Print 
+      run: |
+        cat vars_temp_${{ github.run_id }}.yml
+        echo "Pausing for 30 seconds. Please check the variables and cancel the workflow if needed."
+        sleep 30
         
     - name: Print vars_temp.yml
       run: |
