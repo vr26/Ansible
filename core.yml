@@ -21,12 +21,17 @@
 
     - name: Debug Source_Backup
       debug:
-        msg: "{{ Source_Backup }}"
+        msg: "{{ Source_Backup_AppDB }}"
       when: Source_Backup is defined
 
     - name: Debug Destination_Backup
       debug:
-        msg: "{{ Destination_Backup }}"
+        msg: "{{ Destination_Backup_AppDB }}"
+      when: Destination_Backup is defined
+
+    - name: Debug Destination_Backup
+      debug:
+        msg: "{{ Source_Backup_EngDB }}"
       when: Destination_Backup is defined
 
     - name: Debug Bypass_Backup
