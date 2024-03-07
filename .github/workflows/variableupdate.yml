@@ -31,7 +31,7 @@ jobs:
 
     - name: Prepare vars file
       run: |
-        cp vars.yml vars_temp.yml
+        cp vars.yml vars_temp_${RUN_NUMBER}.yml
         if [[ -n "${{ github.event.inputs.input1 }}" ]]; then
           echo "variable1: '${{ github.event.inputs.input1 }}'" >> vars_temp_${RUN_NUMBER}.yml
         fi
