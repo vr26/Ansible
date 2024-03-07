@@ -1,23 +1,35 @@
 ---
-#- name: Assign local value to my_variable
- # set_fact:
-  #  my_variable: "############# !! Local Value !! ########"
 - hosts: localhost
   gather_facts: no
   vars_files:
     - vars_temp_${{ github.run_id }}.yml
   tasks:
-    - name: Debug variable1
+    - name: Debug Client
       debug:
-        msg: "{{ variable1 }}"
-      when: variable1 is defined
+        msg: "{{ Client }}"
+      when: Client is defined
 
-    - name: Debug variable2
+    - name: Debug Environment
       debug:
-        msg: "{{ variable2 }}"
-      when: variable2 is defined
+        msg: "{{ Environment }}"
+      when: Environment is defined
 
-    - name: Debug variable3
+    - name: Debug type
       debug:
-        msg: "{{ variable3 }}"
-      when: variable3 is defined
+        msg: "{{ type }}"
+      when: type is defined
+
+    - name: Debug Source_Backup
+      debug:
+        msg: "{{ Source_Backup }}"
+      when: Source_Backup is defined
+
+    - name: Debug Destination_Backup
+      debug:
+        msg: "{{ Destination_Backup }}"
+      when: Destination_Backup is defined
+
+    - name: Debug Bypass_Backup
+      debug:
+        msg: "{{ Bypass_Backup }}"
+      when: Bypass_Backup is defined
