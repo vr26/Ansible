@@ -32,23 +32,23 @@ on:
           - Core
           - Portal
           - ALL
-      Source_Backup [App DB]:
+      Source_Backup_AppDB:
         description: 'New value for variable 1'     
         required: false
-      Destination_Backup [App DB]:
+      Destination_Backup_AppDB:
         description: 'New value for variable 2'     
         required: false
-      Source_Backup [Eng DB]:
+      Source_Backup_EngDB:
         description: 'New value for variable 3'     
         required: false
       Bypass_Backup:
-        type: choice
+        description: 'Do you want to Skip the backup?'
         required: true
-        description: DO you want to Skip the backup?
-        default: No
-        options:
-          - Yes
-          - No
+        default: 'false'
+        type: 'string'
+        options: 
+         - 'true'
+         - 'false'
 
 jobs:
   build:
@@ -79,13 +79,13 @@ jobs:
           echo "type: '${{ github.event.inputs.type }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
         if [[ -n "${{ github.event.inputs.Source_Backup }}" ]]; then
-          echo "Source_Backup: '${{ github.event.inputs.Source_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
+          echo "Source_Backup_AppDB: '${{ github.event.inputs.Source_Backup_AppDB }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
         if [[ -n "${{ github.event.inputs.Destination_Backup }}" ]]; then
-          echo "Destination_Backup: '${{ github.event.inputs.Destination_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
+          echo "Destination_Backup_AppDB: '${{ github.event.inputs.Destination_Backup_AppDB }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
         if [[ -n "${{ github.event.inputs.Source_Backup }}" ]]; then
-          echo "Source_Backup: '${{ github.event.inputs.Source_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
+          echo "Source_Backup_EngDB: '${{ github.event.inputs.Source_Backup_EngDB }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
         if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
           echo "Bypass_Backup: '${{ github.event.inputs.Bypass_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
