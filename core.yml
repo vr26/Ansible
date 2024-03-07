@@ -5,13 +5,13 @@
     
 - name: Use variable from vars.yml
   debug:
-    msg: "{{ my_variable }}"
+    msg: "{{ variable1 }}"
     
 - name: Use variable from vars.yml
   debug:
-    msg: "{{ my_variable }}"
+    msg: "{{ variable2 }}"
     
-- name: Use variable from vars.yml
+- name: Debug variable1
   debug:
-    msg: "{{ my_variable }}"
+    msg: "{{ variable3 }}"
 
