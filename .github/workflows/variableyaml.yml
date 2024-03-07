@@ -31,7 +31,7 @@ on:
         options:
           - Core
           - Portal
-          - All
+          - ALL
     
       my_input:
         description: 'Backup Location'     
@@ -54,11 +54,11 @@ jobs:
       run: pip install ansible
 
     - name: Run Ansible playbook without extra vars
-      if: github.event.inputs.my_input == 'Nil'
+      if: github.event.inputs.my_input == ''
       run: ansible-playbook variable.yml
 
     - name: Run Ansible playbook with extra vars
-      if: github.event.inputs.my_input != 'Nil'
+      if: github.event.inputs.my_input != ''
       env:
         MY_INPUT: ${{ github.event.inputs.my_input }}
       run: ansible-playbook variable.yml -e "my_variable='${MY_INPUT}'"
