@@ -79,7 +79,7 @@ jobs:
       
     - name: Prepare Core vars file
       run: |
-        if [[ "${{ github.event.inputs.Environment }}" == "All" ]]; then
+        if [[ "${{ github.event.inputs.type }}" == "COre" ]]; then
           cp vars.yml Core_vars_temp_${{ github.run_id }}.yml
           if [[ -n "${{ github.event.inputs.Client }}" ]]; then
             echo "Client: '${{ github.event.inputs.Client }}'" >> Core_vars_temp_${{ github.run_id }}.yml
@@ -103,7 +103,7 @@ jobs:
 
     - name: Prepare Portal vars file
       run: |
-        if [[ "${{ github.event.inputs.Environment }}" == "Portal" ]]; then
+        if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
           cp vars.yml Portal_vars_temp_${{ github.run_id }}.yml
           if [[ -n "${{ github.event.inputs.Client }}" ]]; then
             echo "Client: '${{ github.event.inputs.Client }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
