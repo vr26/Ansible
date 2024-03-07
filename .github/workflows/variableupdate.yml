@@ -44,7 +44,7 @@ jobs:
         
     - name: Print vars_temp.yml
       run: |
-        cat vars_temp.yml
+        cat vars_temp_${RUN_NUMBER}.yml
         echo "Pausing for 30 seconds. Please check the variables and cancel the workflow if needed."
         sleep 30
           
