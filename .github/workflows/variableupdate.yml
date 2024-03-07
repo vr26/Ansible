@@ -79,7 +79,7 @@ jobs:
       
     - name: Prepare Core vars file
       run: |
-        if [[ "${{ github.event.inputs.Environment }}" == "Core" ]]; then
+        if [[ "${{ github.event.inputs.Environment }}" == "All" ]]; then
           cp vars.yml Core_vars_temp_${{ github.run_id }}.yml
           if [[ -n "${{ github.event.inputs.Client }}" ]]; then
             echo "Client: '${{ github.event.inputs.Client }}'" >> Core_vars_temp_${{ github.run_id }}.yml
