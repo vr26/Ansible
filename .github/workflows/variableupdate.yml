@@ -41,6 +41,27 @@ jobs:
         if [[ -n "${{ github.event.inputs.input3 }}" ]]; then
           echo "variable3: '${{ github.event.inputs.input3 }}'" >> vars_temp.yml
         fi
+    - name: Print vars_temp.yml
+      run: cat vars_temp.yml
 
+    - name: Wait for approval
+      uses: actions/github-script@v3
+      with:
+        script: |
+          const { owner, repo } = context.repo
+          const { number } = context.issue
+          await github.issues.createComment({
+            owner,
+            repo,
+            issue_number: number,
+            body: "Please review the variables and click the Approve button to continue."
+          })
+          await github.actions.createWorkflowApproval({
+            owner,
+            repo,
+            run_id: context.runId,
+            event_type: "APPROVE"
+          })
+          
     - name: Run Ansible playbook
       run: ansible-playbook core.yml -e "@vars_temp.yml"
