@@ -1,1 +1,4 @@
 my_variable: "Hello, World!"
+variable1: "default_value1"
+variable2: "default_value2"
+variable3: "default_value3"
