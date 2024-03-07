@@ -2,7 +2,7 @@
 - hosts: localhost
   gather_facts: no
   vars_files:
-    - vars_temp_${{ github.run_id }}.yml
+    - Core_vars_temp_${{ github.run_id }}.yml
   tasks:
     - name: Debug Client
       debug:
@@ -21,20 +21,20 @@
 
     - name: Debug Source_Backup
       debug:
-        msg: "{{ Source_Backup_AppDB }}"
+        msg: "{{ Core_Source_Backup_AppDB }}"
       when: Source_Backup is defined
 
     - name: Debug Destination_Backup
       debug:
-        msg: "{{ Destination_Backup_AppDB }}"
+        msg: "{{ Core_Destination_Backup_AppDB }}"
       when: Destination_Backup is defined
 
     - name: Debug Destination_Backup
       debug:
-        msg: "{{ Source_Backup_EngDB }}"
+        msg: "{{ Core_Source_Backup_EngDB }}"
       when: Destination_Backup is defined
 
     - name: Debug Bypass_Backup
       debug:
-        msg: "{{ Bypass_Backup }}"
+        msg: "{{ Core_Bypass_Backup }}"
       when: Bypass_Backup is defined
