@@ -34,10 +34,7 @@ on:
           - ALL
       Core_Source_Backup_AppDB:
         description: 'Core_Source_Backup_AppDB'     
-        required: false
-      Core_Destination_Backup_AppDB:
-        description: 'Core_Destination_Backup_AppDB'     
-        required: false
+        required: false  
       Core_Source_Backup_EngDB:
         description: 'Core_Source_Backup_EngDB'     
         required: false
@@ -51,9 +48,6 @@ on:
          - 'false'
       Portal_Source_Backup_AppDB:
         description: 'Portal_Source_Backup_AppDB'     
-        required: false
-      Portal_Destination_Backup_AppDB:
-        description: 'Portal_Destination_Backup_AppDB'     
         required: false
       Portal_Source_Backup_EngDB:
         description: 'Portal_Source_Backup_EngDB'     
@@ -82,3 +76,69 @@ jobs:
 
     - name: Install Ansible
       run: pip install ansible
+      
+    - name: Prepare Core vars file
+      run: |
+        if [[ "${{ github.event.inputs.Environment }}" == "Core" ]]; then
+          cp vars.yml Core_vars_temp_${{ github.run_id }}.yml
+          if [[ -n "${{ github.event.inputs.Client }}" ]]; then
+            echo "Client: '${{ github.event.inputs.Client }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Environment }}" ]]; then
+            echo "Environment: '${{ github.event.inputs.Environment }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.type }}" ]]; then
+            echo "type: '${{ github.event.inputs.type }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Source_Backup_AppDB }}" ]]; then
+            echo "Core_Source_Backup_AppDB: '${{ github.event.inputs.Core_Source_Backup_AppDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Source_Backup_EngDB }}" ]]; then
+            echo "Core_Source_Backup_EngDB: '${{ github.event.inputs.Core_Source_Backup_EngDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
+            echo "Core_Bypass_Backup: '${{ github.event.inputs.Core_Bypass_Backup }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+          fi
+        fi
+
+    - name: Prepare Portal vars file
+      run: |
+        if [[ "${{ github.event.inputs.Environment }}" == "Portal" ]]; then
+          cp vars.yml Portal_vars_temp_${{ github.run_id }}.yml
+          if [[ -n "${{ github.event.inputs.Client }}" ]]; then
+            echo "Client: '${{ github.event.inputs.Client }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Environment }}" ]]; then
+            echo "Environment: '${{ github.event.inputs.Environment }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.type }}" ]]; then
+            echo "type: '${{ github.event.inputs.type }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Source_Backup_AppDB }}" ]]; then
+            echo "Portal_Source_Backup_AppDB: '${{ github.event.inputs.Portal_Source_Backup_AppDB }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Source_Backup_EngDB }}" ]]; then
+            echo "Portal_Source_Backup_EngDB: '${{ github.event.inputs.Portal_Source_Backup_EngDB }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
+          fi
+          if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
+            echo "Portal_Bypass_Backup: '${{ github.event.inputs.Portal_Bypass_Backup }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
+          fi
+        fi    
+
+    - name: Print Core_vars_temp.yml
+      run: |
+        python3 -c "
+        import yaml
+
+        # Load the vars_temp file
+        with open('Core_vars_temp_${{ github.run_id }}.yml', 'r') as f:
+            vars = yaml.safe_load(f)
+            print(vars)
+        "
+
+    - name: Run Ansible playbook for Core
+      run: |
+        if [[ "${{ github.event.inputs.Environment }}" == "Core" ]]; then
+          ansible-playbook core.yml -e "@Core_vars_temp_core_${{ github.run_id }}.yml"
+        fi
+        
