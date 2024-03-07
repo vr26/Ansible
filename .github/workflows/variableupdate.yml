@@ -1,0 +1,46 @@
+name: Run Ansible Playbook
+
+on:
+  workflow_dispatch:
+    inputs: 
+      input1:
+        description: 'New value for variable 1'     
+        required: false
+      input2:
+        description: 'New value for variable 2'     
+        required: false
+      input3:
+        description: 'New value for variable 3'     
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository content
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Ansible
+      run: pip install ansible
+
+    - name: Prepare vars file
+      run: |
+        cp vars.yml vars_temp.yml
+        if [[ -n "${{ github.event.inputs.input1 }}" ]]; then
+          echo "variable1: '${{ github.event.inputs.input1 }}'" >> vars_temp.yml
+        fi
+        if [[ -n "${{ github.event.inputs.input2 }}" ]]; then
+          echo "variable2: '${{ github.event.inputs.input2 }}'" >> vars_temp.yml
+        fi
+        if [[ -n "${{ github.event.inputs.input3 }}" ]]; then
+          echo "variable3: '${{ github.event.inputs.input3 }}'" >> vars_temp.yml
+        fi
+
+    - name: Run Ansible playbook
+      run: ansible-playbook core.yml -e "@vars_temp.yml"
