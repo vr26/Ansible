@@ -3,15 +3,52 @@ name: Run Ansible Playbook
 on:
   workflow_dispatch:
     inputs: 
-      input1:
+      Client:
+        type: choice
+        required: true
+        default: 'ALL'
+        description: Make a choice
+        options:
+         - BHAR
+         - BHME
+         - CMIL
+         - LWWA
+      Environment:
+        type: choice
+        required: true
+        default: 'ALL'
+        description: Make a choice
+        options:
+         - ALL
+         - PS
+         - UAT
+         - SBX
+      type:
+        type: choice
+        required: true
+        description: Please choose the refresh type
+        default: All
+        options:
+          - Core
+          - Portal
+          - ALL
+      Source_Backup [App DB]:
         description: 'New value for variable 1'     
         required: false
-      input2:
+      Destination_Backup [App DB]:
         description: 'New value for variable 2'     
         required: false
-      input3:
+      Source_Backup [Eng DB]:
         description: 'New value for variable 3'     
         required: false
+      Bypass_Backup:
+        type: choice
+        required: true
+        description: DO you want to Skip the backup?
+        default: No
+        options:
+          - Yes
+          - No
 
 jobs:
   build:
@@ -28,23 +65,30 @@ jobs:
 
     - name: Install Ansible
       run: pip install ansible
-    - name: Output Run ID
-      run: echo ${{ github.run_id }}
-    - name: Output Run Number
-      run: echo ${{ github.run_number }}
-    - name: Output Run Attempt
-      run: echo ${{ github.run_attempt }}
+      
     - name: Prepare vars file
       run: |
         cp vars.yml vars_temp_${{ github.run_id }}.yml
-        if [[ -n "${{ github.event.inputs.input1 }}" ]]; then
-          echo "variable1: '${{ github.event.inputs.input1 }}'" >> vars_temp_${{ github.run_id }}.yml
+        if [[ -n "${{ github.event.inputs.Client }}" ]]; then
+          echo "Client: '${{ github.event.inputs.Client }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
-        if [[ -n "${{ github.event.inputs.input2 }}" ]]; then
-          echo "variable2: '${{ github.event.inputs.input2 }}'" >> vars_temp_${{ github.run_id }}.yml
+        if [[ -n "${{ github.event.inputs.Environment }}" ]]; then
+          echo "Environment: '${{ github.event.inputs.Environment }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
-        if [[ -n "${{ github.event.inputs.input3 }}" ]]; then
-          echo "variable3: '${{ github.event.inputs.input3 }}'" >> vars_temp_${{ github.run_id }}.yml
+        if [[ -n "${{ github.event.inputs.type }}" ]]; then
+          echo "type: '${{ github.event.inputs.type }}'" >> vars_temp_${{ github.run_id }}.yml
+        fi
+        if [[ -n "${{ github.event.inputs.Source_Backup }}" ]]; then
+          echo "Source_Backup: '${{ github.event.inputs.Source_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
+        fi
+        if [[ -n "${{ github.event.inputs.Destination_Backup }}" ]]; then
+          echo "Destination_Backup: '${{ github.event.inputs.Destination_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
+        fi
+        if [[ -n "${{ github.event.inputs.Source_Backup }}" ]]; then
+          echo "Source_Backup: '${{ github.event.inputs.Source_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
+        fi
+        if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
+          echo "Bypass_Backup: '${{ github.event.inputs.Bypass_Backup }}'" >> vars_temp_${{ github.run_id }}.yml
         fi
         
     - name: Print vars_temp.yml
