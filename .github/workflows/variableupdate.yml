@@ -93,9 +93,8 @@ jobs:
         
     - name: Print vars_temp.yml
       run: |
-        python3 <<EOF
+        python3 -c "
         import yaml
-        import time
 
         # Load the vars_temp file
         with open('vars_temp_${{ github.run_id }}.yml', 'r') as f:
@@ -106,8 +105,8 @@ jobs:
             print(f'{key}: {value}')
 
         print('Pausing for 30 seconds. Please check the variables and cancel the workflow if needed.')
-        time.sleep(30)
-        EOF
+        "
+        sleep 30
           
     - name: Run Ansible playbook
       run: ansible-playbook core.yml -e "@vars_temp_${{ github.run_id }}.yml"
