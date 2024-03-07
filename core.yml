@@ -5,7 +5,7 @@
 - hosts: localhost
   gather_facts: no
   vars_files:
-    - vars_temp_${RUN_NUMBER}.yml
+    - vars_temp_${{ github.run_id }}.yml
   tasks:
     - name: Debug variable1
       debug:
