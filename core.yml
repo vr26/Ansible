@@ -26,11 +26,6 @@
 
     - name: Debug Destination_Backup
       debug:
-        msg: "{{ Core_Destination_Backup_AppDB }}"
-      when: Destination_Backup is defined
-
-    - name: Debug Destination_Backup
-      debug:
         msg: "{{ Core_Source_Backup_EngDB }}"
       when: Destination_Backup is defined
 
