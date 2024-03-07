@@ -2,16 +2,22 @@
 #- name: Assign local value to my_variable
  # set_fact:
   #  my_variable: "############# !! Local Value !! ########"
-    
-- name: Use variable from vars.yml
-  debug:
-    msg: "{{ variable1 }}"
-    
-- name: Use variable from vars.yml
-  debug:
-    msg: "{{ variable2 }}"
-    
-- name: Debug variable1
-  debug:
-    msg: "{{ variable3 }}"
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars_temp.yml
+  tasks:
+    - name: Debug variable1
+      debug:
+        msg: "{{ variable1 }}"
+      when: variable1 is defined
 
+    - name: Debug variable2
+      debug:
+        msg: "{{ variable2 }}"
+      when: variable2 is defined
+
+    - name: Debug variable3
+      debug:
+        msg: "{{ variable3 }}"
+      when: variable3 is defined
