@@ -7,7 +7,7 @@ on:
         type: choice
         required: true
         default: 'ALL'
-        description: Make a choice
+        description: Client
         options:
          - BHAR
          - BHME
@@ -17,7 +17,7 @@ on:
         type: choice
         required: true
         default: 'ALL'
-        description: Make a choice
+        description: Environment
         options:
          - ALL
          - PS
@@ -26,23 +26,23 @@ on:
       type:
         type: choice
         required: true
-        description: Please choose the refresh type
+        description: Refresh Type
         default: All
         options:
           - Core
           - Portal
           - ALL
       Source_Backup_AppDB:
-        description: 'New value for variable 1'     
+        description: 'Source_Backup_AppDB'     
         required: false
       Destination_Backup_AppDB:
-        description: 'New value for variable 2'     
+        description: 'Destination_Backup_AppDB'     
         required: false
       Source_Backup_EngDB:
-        description: 'New value for variable 3'     
+        description: 'Source_Backup_EngDB'     
         required: false
       Bypass_Backup:
-        description: 'Do you want to Skip the backup?'
+        description: 'Bypass_Backup'
         required: true
         default: 'false'
         type: 'string'
