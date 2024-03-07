@@ -137,13 +137,13 @@ jobs:
           fi
         fi    
 
-    - name: Print vars_temp.yml
+    - name: Print Core_vars_temp.yml
       run: |
         python3 -c "
         import yaml
 
         # Load the vars_temp file
-        with open('vars_temp_${{ github.run_id }}.yml', 'r') as f:
+        with open('Core_vars_temp_${{ github.run_id }}.yml', 'r') as f:
             vars = yaml.safe_load(f)
             print(vars)
         "
