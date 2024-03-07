@@ -133,8 +133,13 @@ jobs:
         # Load the vars_temp file
         with open('Core_vars_temp_${{ github.run_id }}.yml', 'r') as f:
             vars = yaml.safe_load(f)
-            print(vars)
+        # Print the final values of the keys
+        for key, value in vars.items():
+            print(f'{key}: {value}')
+
+        print('Pausing for 30 seconds. Please check the variables and cancel the workflow if needed.')
         "
+        sleep 30
 
     - name: Run Ansible playbook for Core
       run: |
