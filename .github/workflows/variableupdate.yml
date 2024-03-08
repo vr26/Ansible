@@ -127,7 +127,7 @@ jobs:
 
     - name: Print Core_vars_temp.yml
       run: |
-        if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
+        if [[ "${{ github.event.inputs.type }}" == "Core" ]]; then
           python3 -c "
           import yaml
 
