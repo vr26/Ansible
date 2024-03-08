@@ -3,6 +3,8 @@ description: 'Setup Python and install Ansible'
 runs:
   using: "composite"
   steps:
+    - name: Checkout repository content
+      uses: actions/checkout@v2
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
