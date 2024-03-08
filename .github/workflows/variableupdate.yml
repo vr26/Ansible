@@ -127,6 +127,7 @@ jobs:
 
     - name: Print Core_vars_temp.yml
       run: |
+        if [[ "${{ github.event.inputs.type }}" == "Core" ]]; then
         python3 -c "
         import yaml
 
@@ -140,10 +141,35 @@ jobs:
         print('Pausing for 30 seconds. Please check the variables and cancel the workflow if needed.')
         "
         sleep 30
+        fi
 
     - name: Run Ansible playbook for Core
       run: |
-        if [[ "${{ github.event.inputs.Environment }}" == "Core" ]]; then
-          ansible-playbook core.yml -e "@Core_vars_temp_core_${{ github.run_id }}.yml"
+        if [[ "${{ github.event.inputs.type }}" == "Core" ]]; then
+          ansible-playbook core.yml -e "@Core_vars_temp_${{ github.run_id }}.yml"
+        fi
+        
+    - name: Print Portal_vars_temp.yml
+      run: |
+        if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
+        python3 -c "
+        import yaml
+
+        # Load the vars_temp file
+        with open('Portal_vars_temp_${{ github.run_id }}.yml', 'r') as f:
+            vars = yaml.safe_load(f)
+        # Print the final values of the keys
+        for key, value in vars.items():
+            print(f'{key}: {value}')
+
+        print('Pausing for 30 seconds. Please check the variables and cancel the workflow if needed.')
+        "
+        sleep 30
+        fi
+
+    - name: Run Ansible playbook for Portal
+      run: |
+        if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
+          ansible-playbook Portal.yml -e "@Portal_vars_temp_${{ github.run_id }}.yml"
         fi
         
