@@ -1,14 +1,14 @@
----
-- hosts: localhost
-  gather_facts: no
-  tasks:
+name: 'Setup Environment'
+description: 'Checkout code, setup Python, and install Ansible'
+runs:
+  using: "composite"
+  steps:
     - name: Checkout repository content
       uses: actions/checkout@v2
-
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-
     - name: Install Ansible
       run: pip install ansible
+      shell: bash
