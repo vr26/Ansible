@@ -72,7 +72,7 @@ jobs:
     steps:
     - name: Setup
       run: | 
-        ansible-playbook core.yml
+        ansible-playbook setup.yml
       
     - name: Prepare Core vars file
       run: |
