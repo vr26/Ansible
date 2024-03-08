@@ -80,50 +80,14 @@ jobs:
     - name: Prepare Core vars file
       run: |
         if [[ "${{ github.event.inputs.type }}" == "Core" ]]; then
-          cp vars.yml Core_vars_temp_${{ github.run_id }}.yml
-          if [[ -n "${{ github.event.inputs.Client }}" ]]; then
-            echo "Client: '${{ github.event.inputs.Client }}'" >> Core_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Environment }}" ]]; then
-            echo "Environment: '${{ github.event.inputs.Environment }}'" >> Core_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.type }}" ]]; then
-            echo "type: '${{ github.event.inputs.type }}'" >> Core_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_AppDB }}" ]]; then
-            echo "Core_Source_Backup_AppDB: '${{ github.event.inputs.Core_Source_Backup_AppDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_EngDB }}" ]]; then
-            echo "Core_Source_Backup_EngDB: '${{ github.event.inputs.Core_Source_Backup_EngDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
-            echo "Core_Bypass_Backup: '${{ github.event.inputs.Core_Bypass_Backup }}'" >> Core_vars_temp_${{ github.run_id }}.yml
-          fi
+          bash prepare_vars.sh Core ${{ github.run_id }} "${{ toJson(github.event.inputs) }}"
         fi
 
     - name: Prepare Portal vars file
       run: |
         if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
-          cp vars.yml Portal_vars_temp_${{ github.run_id }}.yml
-          if [[ -n "${{ github.event.inputs.Client }}" ]]; then
-            echo "Client: '${{ github.event.inputs.Client }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Environment }}" ]]; then
-            echo "Environment: '${{ github.event.inputs.Environment }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.type }}" ]]; then
-            echo "type: '${{ github.event.inputs.type }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_AppDB }}" ]]; then
-            echo "Portal_Source_Backup_AppDB: '${{ github.event.inputs.Portal_Source_Backup_AppDB }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_EngDB }}" ]]; then
-            echo "Portal_Source_Backup_EngDB: '${{ github.event.inputs.Portal_Source_Backup_EngDB }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
-          fi
-          if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
-            echo "Portal_Bypass_Backup: '${{ github.event.inputs.Portal_Bypass_Backup }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
-          fi
-        fi    
+          bash prepare_vars.sh Portal ${{ github.run_id }} "${{ toJson(github.event.inputs) }}"
+        fi
 
     - name: Print Core_vars_temp.yml
       run: |
