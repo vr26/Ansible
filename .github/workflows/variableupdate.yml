@@ -70,7 +70,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
+    
+    - name: Checkout repository content
+      uses: actions/checkout@v2
     - name: Setup environment
       uses: ./.github/actions/setup-env
       
