@@ -70,16 +70,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository content
-      uses: actions/checkout@v2
-
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Install Ansible
-      run: pip install ansible
+    - name: Setup environment
+      uses: ./.github/actions/setup-env
       
     - name: Prepare Core vars file
       run: |
