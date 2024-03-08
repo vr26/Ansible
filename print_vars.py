@@ -11,5 +11,5 @@ with open(f'{type}_vars_temp_{os.environ["GITHUB_RUN_ID"]}.yml', 'r') as f:
 
 # Print only the variables that start with the given type
 for key, value in vars.items():
-    if key.startswith(type):
+    #if key.startswith(type):
         print(f'{key}: {value}')
