@@ -23,11 +23,6 @@
       debug:
         msg: "{{ Portal_Source_Backup_AppDB }}"
       when: Portal_Source_Backup_AppDB is defined
-
-    - name: Debug Destination_Backup
-      debug:
-        msg: "{{ Portal_Source_Backup_AppDB }}"
-      when: Portal_Destination_Backup_AppDB is defined
       
     - name: Debug Source_Backup
       debug:
