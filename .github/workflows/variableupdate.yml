@@ -140,5 +140,5 @@ jobs:
     - name: Run Ansible playbook for Portal
       run: |
         if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
-          ansible-playbook Portal.yml -e "@Portal_vars_temp_${{ github.run_id }}.yml"
+          ansible-playbook portal.yml -e "@Portal_vars_temp_${{ github.run_id }}.yml"
         fi
