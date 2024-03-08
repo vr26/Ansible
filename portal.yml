@@ -22,12 +22,17 @@
     - name: Debug Source_Backup
       debug:
         msg: "{{ Portal_Source_Backup_AppDB }}"
-      when: Portal_Source_Backup is defined
+      when: Portal_Source_Backup_AppDB is defined
 
     - name: Debug Destination_Backup
       debug:
+        msg: "{{ Portal_Source_Backup_AppDB }}"
+      when: Portal_Destination_Backup_AppDB is defined
+      
+    - name: Debug Source_Backup
+      debug:
         msg: "{{ Portal_Source_Backup_EngDB }}"
-      when: Portal_Destination_Backup is defined
+      when: Portal_Source_Backup_EngDB is defined
 
     - name: Debug Bypass_Backup
       debug:
