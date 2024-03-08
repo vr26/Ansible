@@ -33,10 +33,12 @@ on:
           - Portal
           - ALL
       Core_Source_Backup_AppDB:
-        description: 'Core_Source_Backup_AppDB'     
+        description: 'Core_Source_Backup_AppDB'
+        default: '\\Servername\Foldername$\Core_Source'
         required: false  
       Core_Source_Backup_EngDB:
-        description: 'Core_Source_Backup_EngDB'     
+        description: 'Core_Source_Backup_EngDB' 
+        default: '\\Servername\Foldername$\Core_Source'
         required: false
       Core_Bypass_Backup:
         description: 'Core_Bypass_Backup'
@@ -47,10 +49,12 @@ on:
          - 'true'
          - 'false'
       Portal_Source_Backup_AppDB:
-        description: 'Portal_Source_Backup_AppDB'     
+        description: 'Portal_Source_Backup_AppDB'    
+        default: '\\Servername\Foldername$\Portal_Source'
         required: false
       Portal_Source_Backup_EngDB:
-        description: 'Portal_Source_Backup_EngDB'     
+        description: 'Portal_Source_Backup_EngDB' 
+        default: '\\Servername\Foldername$\Portal_Source'
         required: false
       Portal_Bypass_Backup:
         description: 'Portal_Bypass_Backup'
