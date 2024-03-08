@@ -1,6 +1,35 @@
 ---
-- name: Display variables
-  shell: |
-    echo "DestinationEngineeringDBBackupLocation: {{ destination_engineering_db_backup_location }}"
-    echo "BypassDestinationDBBackup: {{ bypass_destination_db_backup }}"
-    echo "UseUsersAndRolesFromSource: {{ use_users_and_roles_from_source }}"
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+    - Portal_vars_temp_${{ github.run_id }}.yml
+  tasks:
+    - name: Debug Client
+      debug:
+        msg: "{{ Client }}"
+      when: Client is defined
+
+    - name: Debug Environment
+      debug:
+        msg: "{{ Environment }}"
+      when: Environment is defined
+
+    - name: Debug type
+      debug:
+        msg: "{{ type }}"
+      when: type is defined
+
+    - name: Debug Source_Backup
+      debug:
+        msg: "{{ Portal_Source_Backup_AppDB }}"
+      when: Portal_Source_Backup is defined
+
+    - name: Debug Destination_Backup
+      debug:
+        msg: "{{ Portal_Source_Backup_EngDB }}"
+      when: Portal_Destination_Backup is defined
+
+    - name: Debug Bypass_Backup
+      debug:
+        msg: "{{ Portal_Bypass_Backup }}"
+      when: Portal_Bypass_Backup is defined
