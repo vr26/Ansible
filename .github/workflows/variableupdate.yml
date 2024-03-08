@@ -9,10 +9,10 @@ on:
         default: 'ALL'
         description: Client
         options:
-         - BHAR
-         - BHME
-         - CMIL
-         - LWWA
+         - Client1
+         - Client2
+         - Client3
+         - Client4
       Environment:
         type: choice
         required: true
@@ -34,7 +34,7 @@ on:
           - ALL
       Core_Source_Backup_AppDB:
         description: 'Core_Source_Backup_AppDB'
-        default: "{{ Core_Source_Backup_AppDB }}"
+        default: '\\Servername\Foldername$\Core_Source'
         required: false  
       Core_Source_Backup_EngDB:
         description: 'Core_Source_Backup_EngDB' 
@@ -66,20 +66,13 @@ on:
          - 'false'
 
 jobs:
-  build:
+  Action:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository content
-      uses: actions/checkout@v2
-
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Install Ansible
-      run: pip install ansible
+    - name: Setup
+      run: | 
+        ansible-playbook core.yml
       
     - name: Prepare Core vars file
       run: |
