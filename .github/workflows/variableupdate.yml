@@ -127,23 +127,19 @@ jobs:
 
     - name: Print Core_vars_temp.yml
       run: |
-        if [[ "${{ github.event.inputs.type }}" == "Core" ]]; then
-        python3 -c "
-        import yaml
+        if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
+          python3 -c "
+          import yaml
 
-        # Load the vars_temp file
-        with open('Portal_vars_temp_${{ github.run_id }}.yml', 'r') as f:
-          vars = yaml.safe_load(f)
-        # Print the final values of the keys
-        for key, value in vars.items():
-          if key.startswith('Core'):
+          # Load the vars_temp file
+          with open('Portal_vars_temp_${{ github.run_id }}.yml', 'r') as f:
+            vars = yaml.safe_load(f)
+          # Print the final values of the keys
+          for key, value in vars.items():
+            if key.startswith('Core'):
             print(f'{key}: {value}')
-        "
-
-        print('Pausing for 30 seconds. Please check the variables and cancel the workflow if needed.')
-        "
-        sleep 30
-        fi
+          "
+         fi
 
     - name: Run Ansible playbook for Core
       run: |
