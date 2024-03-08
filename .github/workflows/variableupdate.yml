@@ -125,23 +125,17 @@ jobs:
           fi
         fi    
 
-    - name: Print Core_vars_temp.yml
+    - name: Print Params
       run: |
-        if [[ "${{ github.event.inputs.type }}" == "Core" ]]; then
+          export TYPE=${{ github.event.inputs.type }}
           python3 print_vars.py
-        fi
-
+          
     - name: Run Ansible playbook for Core
       run: |
         if [[ "${{ github.event.inputs.type }}" == "Core" ]]; then
           ansible-playbook core.yml -e "@Core_vars_temp_${{ github.run_id }}.yml"
         fi
         
-    - name: Print Portal_vars_temp.yml
-      run: |
-        if [[ "${{ github.event.inputs.type }}" == "Portal" ]]; then
-          python3 print_vars.py
-        fi
 
     - name: Run Ansible playbook for Portal
       run: |
