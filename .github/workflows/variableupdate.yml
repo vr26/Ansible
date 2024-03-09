@@ -88,8 +88,10 @@ jobs:
           if [[ -n "${{ github.event.inputs.type }}" ]]; then
             echo "type: '${{ github.event.inputs.type }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Core_Source_Backup_AppDB }}" && "${{ github.event.inputs.Core_Source_Backup_AppDB }}" != "\\Server\Folder$\\Core_Source\\" ]]; then
-            echo "Core_Source_Backup_AppDB: '${{ github.event.inputs.Core_Source_Backup_AppDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+          if [[ -n "${{ github.event.inputs.Core_Source_Backup_AppDB }}" ]]; then
+            if [[ "${{ github.event.inputs.Core_Source_Backup_AppDB }}" != "\\Server\Folder$\\Core_Source\\" ]]; then
+              echo "Core_Source_Backup_AppDB: '${{ github.event.inputs.Core_Source_Backup_AppDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
+            fi
           fi
           if [[ -n "${{ github.event.inputs.Core_Source_Backup_EngDB }}" ]]; then
             echo "Core_Source_Backup_EngDB: '${{ github.event.inputs.Core_Source_Backup_EngDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
