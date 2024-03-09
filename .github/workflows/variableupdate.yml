@@ -89,7 +89,7 @@ jobs:
             echo "type: '${{ github.event.inputs.type }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
             if [[ "${{ github.event.inputs.Core_Source_Backup_AppDB }}" = "\\Server\Folder$\\Core_Source\\" ]]; then
-              echo "Core_Source_Backup_AppDB: '\\\\backupserver01\\Refresh$\\ALD${{ github.event.inputs.Environment }}DB${{ github.event.inputs.Client }}CLU$${{ github.event.inputs.Client }}${{ github.event.inputs.Environment }}SQLAG_${{ github.event.inputs.Client }}APP_FULL.bak'" >> Core_vars_temp_${{ github.run_id }}.yml
+              echo "Core_Source_Backup_AppDB: '\\\\backupserver01\\Refresh$\\ALD${{ github.event.inputs.Environment }}DB${{ github.event.inputs.Client }}CLU$$$$${{ github.event.inputs.Client }}${{ github.event.inputs.Environment }}SQLAG_${{ github.event.inputs.Client }}APP_FULL.bak'" >> Core_vars_temp_${{ github.run_id }}.yml
             fi
           if [[ -n "${{ github.event.inputs.Core_Source_Backup_EngDB }}" ]]; then
             echo "Core_Source_Backup_EngDB: '${{ github.event.inputs.Core_Source_Backup_EngDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
