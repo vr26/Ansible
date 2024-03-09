@@ -34,10 +34,10 @@ on:
           - ALL
       Core_Source_Backup_AppDB:
         description: 'Core_Source_Backup_AppDB'
+        default: '\\Server\Folder$\\Core_Source\\'
         required: false  
       Core_Source_Backup_EngDB:
-        description: 'AppDB Core Source' 
-        default: '\\Server\Folder$\\Core_Source\\'
+        description: 'AppDB Core Source'
         required: false
       Core_Bypass_Backup:
         description: 'Core_Bypass_Backup'
