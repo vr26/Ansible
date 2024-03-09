@@ -88,13 +88,13 @@ jobs:
           if [[ -n "${{ github.event.inputs.type }}" ]]; then
             echo "type: '${{ github.event.inputs.type }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_AppDB }}" ]]; then
+          if [[ -n "${{ github.event.inputs.Core_Source_Backup_AppDB }}" ]]; then
             echo "Core_Source_Backup_AppDB: '${{ github.event.inputs.Core_Source_Backup_AppDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_EngDB }}" ]]; then
+          if [[ -n "${{ github.event.inputs.Core_Source_Backup_EngDB }}" ]]; then
             echo "Core_Source_Backup_EngDB: '${{ github.event.inputs.Core_Source_Backup_EngDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
+          if [[ -n "${{ github.event.inputs.Core_Bypass_Backup }}" ]]; then
             echo "Core_Bypass_Backup: '${{ github.event.inputs.Core_Bypass_Backup }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
         fi
@@ -112,13 +112,13 @@ jobs:
           if [[ -n "${{ github.event.inputs.type }}" ]]; then
             echo "type: '${{ github.event.inputs.type }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_AppDB }}" ]]; then
+          if [[ -n "${{ github.event.inputs.Portal_Source_Backup_AppDB }}" ]]; then
             echo "Portal_Source_Backup_AppDB: '${{ github.event.inputs.Portal_Source_Backup_AppDB }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Source_Backup_EngDB }}" ]]; then
+          if [[ -n "${{ github.event.inputs.Portal_Source_Backup_EngDB }}" ]]; then
             echo "Portal_Source_Backup_EngDB: '${{ github.event.inputs.Portal_Source_Backup_EngDB }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Bypass_Backup }}" ]]; then
+          if [[ -n "${{ github.event.inputs.Portal_Bypass_Backup }}" ]]; then
             echo "Portal_Bypass_Backup: '${{ github.event.inputs.Portal_Bypass_Backup }}'" >> Portal_vars_temp_${{ github.run_id }}.yml
           fi
         fi    
