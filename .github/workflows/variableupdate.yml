@@ -36,7 +36,8 @@ on:
         description: 'Core_Source_Backup_AppDB'
         required: false  
       Core_Source_Backup_EngDB:
-        description: 'Optional: AppDB Core Source e.g, \\Server\Folder$\Core_Source' 
+        description: 'AppDB Core Source' 
+        default: '\\Server\Folder$\\Core_Source\\'
         required: false
       Core_Bypass_Backup:
         description: 'Core_Bypass_Backup'
@@ -87,7 +88,7 @@ jobs:
           if [[ -n "${{ github.event.inputs.type }}" ]]; then
             echo "type: '${{ github.event.inputs.type }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
-          if [[ -n "${{ github.event.inputs.Core_Source_Backup_AppDB }}" ]]; then
+          if [[ -n "${{ github.event.inputs.Core_Source_Backup_AppDB }}" && "${{ github.event.inputs.Core_Source_Backup_AppDB }}" != "\\Server\Folder$\\Core_Source\\" ]]; then
             echo "Core_Source_Backup_AppDB: '${{ github.event.inputs.Core_Source_Backup_AppDB }}'" >> Core_vars_temp_${{ github.run_id }}.yml
           fi
           if [[ -n "${{ github.event.inputs.Core_Source_Backup_EngDB }}" ]]; then
