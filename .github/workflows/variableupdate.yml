@@ -36,7 +36,7 @@ on:
         description: 'Core_Source_Backup_AppDB'
         required: false  
       Core_Source_Backup_EngDB:
-        description: 'Optional: Path to Core Source (format: \\Server\Folder$\Core_Source)' 
+        description: 'Optional: Path to Core Source     (e.g., \\Server\Folder$\Core_Source)' 
         required: false
       Core_Bypass_Backup:
         description: 'Core_Bypass_Backup'
