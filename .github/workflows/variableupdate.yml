@@ -36,8 +36,7 @@ on:
         description: 'Core_Source_Backup_AppDB'
         required: false  
       Core_Source_Backup_EngDB:
-        description: 'Core_Source_Backup_EngDB' 
-        default: '\\Servername\Foldername$\Core_Source'
+        description: 'Core_Source_Backup_EngDB (\\Servername\Foldername$\Core_Source) -Optional ' 
         required: false
       Core_Bypass_Backup:
         description: 'Core_Bypass_Backup'
